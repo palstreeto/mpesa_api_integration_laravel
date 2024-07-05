@@ -20,10 +20,10 @@ In case you need technical help, <b>whatsapp +254706745202</b> for immediate hel
   <li>mkdir app/Services and then add the attached mpesa_api_service.php file with its php code</li>
   <li>php artisan make:controller mpesa_Api_controller.php . copy the attached relevant file code into this controller.
 </li>
-  <li>Define routes as follows: use App\Http\Controllers\MpesaController;
+  <li>Define routes as follows: use App\Http\Controllers\mpesa_ApiController;
 
-Route::post('/mpesa/stkpush', [MpesaController::class, 'initiateStkPush']);
-Route::post('/mpesa/callback', [MpesaController::class, 'mpesaCallback'])->name('mpesa.callback');
+Route::post('/mpesa/stkpush', [mpesa_ApiController::class, 'initiateStkPush']);
+Route::post('/mpesa/callback', [mpesa_ApiController::class, 'mpesaCallback'])->name('mpesa.callback');
 </li>
 
 <li>You now have a route to call to /mpesa/stkpush . To this post the following data: (amount, phone, account_reference, and transaction_desc).</li>
