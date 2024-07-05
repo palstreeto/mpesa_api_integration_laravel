@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Services\MpesaService;
+
+class MpesaController extends Controller
+{
+    protected $mpesaService;
+
+    public function __construct(MpesaService $mpesaService)
+    {
+        $this->mpesaService = $mpesaService;
+    }
+
+    public function initiateStkPush(Request $request)
+    {
+        $amount = $request->input('amount');
+        $phone = $request->input('phone');
+        $accountReference = $request->input('account_reference');
+        $transactionDesc = $request->input('transaction_desc');
+
+        $response = $this->mpesaService->stkPush($amount, $phone, $accountReference, $transactionDesc);
+
+        return response()->json($response);
+    }
+
+    public function mpesaCallback(Request $request)
+    {
+        // Handle the callback here
+        Log::info('Mpesa callback', $request->all());
+    }
+}
